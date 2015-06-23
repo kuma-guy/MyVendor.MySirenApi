@@ -7,6 +7,8 @@ use BEAR\Resource\Annotation\Embed;
 use BEAR\Resource\Annotation\Link;
 use BEAR\Resource\Exception\ResourceNotFoundException;
 use BEAR\Resource\ResourceObject;
+use BEAR\SirenModule\Annotation\SirenAction;
+use BEAR\SirenModule\Annotation\SirenClass;
 use BEAR\SirenModule\Annotation\SirenEmbedLink;
 use BEAR\SirenModule\Annotation\SirenEmbedResource;
 use Ray\AuraSqlModule\AuraSqlInject;
@@ -19,7 +21,9 @@ class Post extends ResourceObject
     use AuraSqlInject;
 
     /**
-     * @SirenEmbedResource(rel="comment", src="app://self/comment{?post_id}")
+     * @SirenClass("post")
+     * @SirenEmbedResource(rel="comment", src="app://self/comment?post_id={id}")
+     * @SirenAction(src="app://self/comment?post_id={id}", method="post")
      */
     public function onGet($id)
     {
@@ -31,8 +35,8 @@ class Post extends ResourceObject
         }
         $this->body += $post;
 
-        $post_id = $id;
-        $this['comment']->addQuery(['post_id' => $post_id])->eager->request();
+        $postId = $id;
+        $this['comment']->addQuery(['post_id' => $postId])->eager->request();
 
         return $this;
     }

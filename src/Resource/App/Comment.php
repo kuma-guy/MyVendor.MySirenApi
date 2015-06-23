@@ -5,6 +5,9 @@ namespace MyVendor\MySirenApi\Resource\App;
 use BEAR\RepositoryModule\Annotation\Cacheable;
 use BEAR\RepositoryModule\Annotation\Refresh;
 use BEAR\Resource\ResourceObject;
+use BEAR\SirenModule\Annotation\SirenField;
+use BEAR\SirenModule\Annotation\SirenName;
+use BEAR\SirenModule\Annotation\SirenTitle;
 use Ray\AuraSqlModule\AuraSqlInject;
 
 /**
@@ -24,6 +27,11 @@ class Comment extends ResourceObject
     }
 
     /**
+     * @SirenName("add-comment")
+     * @SirenTitle("Add Comment")
+     * @SirenField(name="post_id", type="hidden", value="{id}")
+     * @SirenField(name="body", type="text")
+     *
      * @Refresh(uri="app://self/post?id={post_id}")
      */
     public function onPost($post_id, $body)
