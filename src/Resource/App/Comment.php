@@ -5,6 +5,7 @@ namespace MyVendor\MySirenApi\Resource\App;
 use BEAR\RepositoryModule\Annotation\Cacheable;
 use BEAR\RepositoryModule\Annotation\Refresh;
 use BEAR\Resource\ResourceObject;
+use BEAR\SirenModule\Annotation\SirenClass;
 use BEAR\SirenModule\Annotation\SirenField;
 use BEAR\SirenModule\Annotation\SirenName;
 use BEAR\SirenModule\Annotation\SirenTitle;
@@ -17,6 +18,12 @@ class Comment extends ResourceObject
 {
     use AuraSqlInject;
 
+    /**
+     * @SirenClass("comment")
+     *
+     * @param $post_id
+     * @return $this
+     */
     public function onGet($post_id)
     {
         $sql  = 'SELECT * FROM comment WHERE post_id = :post_id';
