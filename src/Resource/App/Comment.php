@@ -40,6 +40,10 @@ class Comment extends ResourceObject
      * @SirenField(name="body", type="text")
      *
      * @Refresh(uri="app://self/post?id={post_id}")
+     *
+     * @param $post_id
+     * @param $body
+     * @return $this
      */
     public function onPost($post_id, $body)
     {

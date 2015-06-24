@@ -11,6 +11,9 @@ use BEAR\SirenModule\Annotation\SirenAction;
 use BEAR\SirenModule\Annotation\SirenClass;
 use BEAR\SirenModule\Annotation\SirenEmbedLink;
 use BEAR\SirenModule\Annotation\SirenEmbedResource;
+use BEAR\SirenModule\Annotation\SirenField;
+use BEAR\SirenModule\Annotation\SirenName;
+use BEAR\SirenModule\Annotation\SirenTitle;
 use Ray\AuraSqlModule\AuraSqlInject;
 
 /**
@@ -24,6 +27,9 @@ class Post extends ResourceObject
      * @SirenClass("post")
      * @SirenEmbedResource(rel="comment", src="app://self/comment?post_id={id}")
      * @SirenAction(src="app://self/comment?post_id={id}", method="post")
+     *
+     * @param $id
+     * @return $this
      */
     public function onGet($id)
     {
@@ -41,6 +47,17 @@ class Post extends ResourceObject
         return $this;
     }
 
+    /**
+     * @SirenClass("new-post")
+     * @SirenName("add-post")
+     * @SirenTitle("Add Post")
+     * @SirenField(name="title", type="text")
+     * @SirenField(name="body", type="text")
+     *
+     * @param $title
+     * @param $body
+     * @return $this
+     */
     public function onPost($title, $body)
     {
         $sql = 'INSERT INTO post (title, body) VALUES(:title, :body)';
