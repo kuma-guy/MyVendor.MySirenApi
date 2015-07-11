@@ -5,7 +5,7 @@ Siren version of [https://github.com/bearsunday/MyVendor.MyApi]
 
 ## Add Post
 ```
-php bootstrap/api.php post 'app://self/post?title=greeting&body=hello'
+php bootstrap/api.php post '/post?title=greeting&body=hello'
 ```
 
 ```
