@@ -4,6 +4,7 @@ Demo API application using Siren with BEAR.Sunday
 Siren version of [https://github.com/bearsunday/MyVendor.MyApi]
 
 ## Add Post
+
 ```
 php bootstrap/api.php post '/post?title=greeting&body=hello'
 ```
@@ -85,3 +86,24 @@ Last-Modified: Sat, 11 Jul 2015 16:15:21 GMT
 ```
 
 ## Add Comment
+
+```
+php bootstrap/api.php post '/comment?post_id=1&body=nice post !'
+```
+
+```
+201 Created
+Location: /comment?id=1
+content-type: application/vnd.siren+json
+
+{
+    "links": [
+        {
+            "rel": [
+                "self"
+            ],
+            "href": "\/comment?id=1"
+        }
+    ]
+}
+```
