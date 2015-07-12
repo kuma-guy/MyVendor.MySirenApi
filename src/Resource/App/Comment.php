@@ -57,7 +57,7 @@ class Comment extends ResourceObject
         $id = $this->pdo->lastInsertId();
 
         $this->code = 201;
-        $this->headers['Location'] = "/comment?id={$id}";
+        $this->headers['Location'] = "/comment?post_id={$id}";
 
         return $this;
     }
