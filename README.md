@@ -93,7 +93,7 @@ php bootstrap/api.php post '/comment?post_id=1&body=nice post !'
 
 ```
 201 Created
-Location: /comment?id=1
+Location: /comment?post_id=1
 content-type: application/vnd.siren+json
 
 {
@@ -102,8 +102,9 @@ content-type: application/vnd.siren+json
             "rel": [
                 "self"
             ],
-            "href": "\/comment?id=1"
+            "href": "\/comment?post_id=1"
         }
     ]
 }
+
 ```
