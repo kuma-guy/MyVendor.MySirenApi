@@ -108,3 +108,72 @@ content-type: application/vnd.siren+json
 }
 
 ```
+
+## Get Post With Comments
+
+Now, the comment for the post which we first created will be embedded as entity.
+If you request the post, you will get like this.
+
+```
+200 OK
+content-type: application/vnd.siren+json
+ETag: 1492266957
+Last-Modified: Sun, 12 Jul 2015 03:56:12 GMT
+
+{
+    "class": [
+        "post"
+    ],
+    "properties": {
+        "id": "1",
+        "title": "greeting",
+        "body": "hello"
+    },
+    "entities": [
+        {
+            "href": "\/comment?post_id=1",
+            "rel": [
+                "comment"
+            ],
+            "class": [
+                "comment"
+            ],
+            "properties": [
+                {
+                    "id": "1",
+                    "post_id": "1",
+                    "body": "nice post !"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "add-comment",
+            "href": "\/comment?post_id=1",
+            "method": "POST",
+            "title": "Add Comment",
+            "type": "application\/x-www-form-urlencoded",
+            "fields": [
+                {
+                    "name": "post_id",
+                    "type": "hidden",
+                    "value": "1"
+                },
+                {
+                    "name": "body",
+                    "type": "text"
+                }
+            ]
+        }
+    ],
+    "links": [
+        {
+            "rel": [
+                "self"
+            ],
+            "href": "\/post?id=1"
+        }
+    ]
+}
+```
